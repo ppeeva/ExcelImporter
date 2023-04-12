@@ -6,8 +6,11 @@ namespace ExcelImporter.Web.Controllers
     [ApiController]
     public class ImportController : ControllerBase
     {
-        public ImportController()
+        protected readonly ILogger<ImportController> _logger;
+
+        public ImportController(ILogger<ImportController> logger = null!)
         {
+            _logger = logger;
         }
 
         /// <summary>
@@ -23,18 +26,15 @@ namespace ExcelImporter.Web.Controllers
         {
             try
             {
-                if (data == null)
-                {
-                    return BadRequest("Missing data!");
-                }
-
                 var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
                 string result = $"Test succeeded! data: {json}";
-
+                
+                _logger.LogInformation(result);
                 return Ok(result);
             }
-            catch 
+            catch(Exception ex)
             {
+                _logger.LogError(ex, "Error on import test");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error on import test");
             }
         }
