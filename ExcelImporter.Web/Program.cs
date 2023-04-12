@@ -1,3 +1,4 @@
+using ExcelImporter.Services;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddTransient<IImportService, ImportService>();
 
 // use Serilog
 var logger = new LoggerConfiguration()

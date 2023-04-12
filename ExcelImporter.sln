@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Web", "ExcelImporter.Web\ExcelImporter.Web.csproj", "{C2C229B5-8D76-4B78-8ED0-4D4EAE248704}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Services", "ExcelImporter.Services\ExcelImporter.Services.csproj", "{9C160360-1260-4733-94D7-382494C0CDAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Models", "ExcelImporter.Models\ExcelImporter.Models.csproj", "{F6F84895-779C-411F-BE98-559422C7758D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C2C229B5-8D76-4B78-8ED0-4D4EAE248704}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2C229B5-8D76-4B78-8ED0-4D4EAE248704}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2C229B5-8D76-4B78-8ED0-4D4EAE248704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C160360-1260-4733-94D7-382494C0CDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C160360-1260-4733-94D7-382494C0CDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C160360-1260-4733-94D7-382494C0CDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C160360-1260-4733-94D7-382494C0CDAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F84895-779C-411F-BE98-559422C7758D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F84895-779C-411F-BE98-559422C7758D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F84895-779C-411F-BE98-559422C7758D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F84895-779C-411F-BE98-559422C7758D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
