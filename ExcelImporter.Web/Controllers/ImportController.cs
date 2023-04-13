@@ -75,5 +75,34 @@ namespace ExcelImporter.Web.Controllers
         }
 
 
+
+        [HttpPost("readBooks")]
+        public async Task<IActionResult> ReadBooksFromExcel()
+        {
+            try
+            {
+                if (Request.Form.Files == null || Request.Form.Files.Count() == 0 || Request.Form.Files[0] == null)
+                {
+                    return BadRequest("Missing import file!");
+                }
+
+                Tuple<bool, object> result = await _importService.ImportBooksFromExcelAsync(Request.Form.Files[0]);
+
+                if (!result.Item1)
+                {
+                    _logger.LogError(String.Join(";", result.Item2.ToString()));
+                    return BadRequest(String.Join(";", result.Item2.ToString()));
+                }
+
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(result.Item2);
+                return Ok(json);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error on reading data from import file");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error on importing a books file");
+            }
+
+        }
     }
 }

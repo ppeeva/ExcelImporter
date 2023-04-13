@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Services", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Models", "ExcelImporter.Models\ExcelImporter.Models.csproj", "{F6F84895-779C-411F-BE98-559422C7758D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelImporter.Shared", "ExcelImporter.Shared\ExcelImporter.Shared.csproj", "{CDD4EF3A-ABED-49FC-8371-80A86EDCCD21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F6F84895-779C-411F-BE98-559422C7758D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F84895-779C-411F-BE98-559422C7758D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F84895-779C-411F-BE98-559422C7758D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDD4EF3A-ABED-49FC-8371-80A86EDCCD21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDD4EF3A-ABED-49FC-8371-80A86EDCCD21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDD4EF3A-ABED-49FC-8371-80A86EDCCD21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDD4EF3A-ABED-49FC-8371-80A86EDCCD21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

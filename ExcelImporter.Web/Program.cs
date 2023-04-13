@@ -1,3 +1,4 @@
+using ExcelImporter.Models;
 using ExcelImporter.Services;
 using Serilog;
 
@@ -14,6 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IImportService, ImportService>();
+builder.Services.AddTransient<IModelValidationService, ModelValidationService>();
+builder.Services.Configure<ImportSettings>(builder.Configuration.GetSection(ImportSettings.Name));
 
 // use Serilog
 var logger = new LoggerConfiguration()

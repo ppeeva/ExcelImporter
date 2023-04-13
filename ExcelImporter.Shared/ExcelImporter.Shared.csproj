@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExcelImporter.Shared\ExcelImporter.Shared.csproj" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
   </ItemGroup>
 
 </Project>
