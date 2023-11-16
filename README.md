@@ -1,12 +1,12 @@
 # ExcelImporter
 
-Example piece of functionality for importing Excel files. Tailored for custom data models. 
+Example piece of functionality for importing Excel files. Tailored for custom data models. Option to export Excel file template.
 
 # Technologies
 
 C# (ASP .Net Core Web API)
 
-# Postman request
+# Postman requests
 
 Method: POST
 
@@ -17,7 +17,7 @@ Body: form-data
 Body: Content - File
 
 
-
+----
 
 
 Method: GET
