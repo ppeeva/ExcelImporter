@@ -18,6 +18,8 @@ Body: Content - File
 
 
 
+
+
 Method: GET
 
 URL: https://localhost:44350/api/import/exportFileTemplate
