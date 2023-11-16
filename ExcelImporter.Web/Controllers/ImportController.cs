@@ -105,7 +105,7 @@ namespace ExcelImporter.Web.Controllers
         }
 
         [HttpGet("exportFileTemplate")]
-        public async Task<IActionResult> ExportFileTemplate()
+        public IActionResult ExportFileTemplate()
         {
             try
             {
