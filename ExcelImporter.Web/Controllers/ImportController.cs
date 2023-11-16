@@ -102,6 +102,29 @@ namespace ExcelImporter.Web.Controllers
                 _logger.LogError(ex, "Error on reading data from import file");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error on importing a books file");
             }
+        }
+
+        [HttpGet("exportFileTemplate")]
+        public async Task<IActionResult> ExportFileTemplate()
+        {
+            try
+            {
+                var result = _importService.ExportFileTemplateToExcel();
+                if (result == null)
+                {
+                    throw new Exception("File is null");
+                }
+
+                Response.Headers.Add("Content-Disposition", $"{"attachment"}; filename={result.Filename}");
+                string? extension = Path.GetExtension(result.Filename);
+                string contentType = result.Mimetype!;
+                return new FileContentResult(Convert.FromBase64String(result.Data!), contentType);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error on exporting books file template");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error on exporting file template");
+            }
 
         }
     }

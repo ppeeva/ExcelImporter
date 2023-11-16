@@ -7,5 +7,6 @@ namespace ExcelImporter.Services
     {
         Task<FileModel> ParseFile(IFormFile file);
         Task<Tuple<bool, object>> ImportBooksFromExcelAsync(IFormFile model);
+        FileDownloadModel ExportFileTemplateToExcel();
     }
 }

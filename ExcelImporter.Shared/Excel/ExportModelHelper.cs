@@ -209,7 +209,7 @@ namespace ExcelImporter.Shared.Excel
                 {
                     string collectionPropName = GetPropFKMultiValuesPropName<T>(prop.Name);
                     List<string> multiValuesCodes = new List<string>();
-                    string[] multiValues = ((string)propValue).Split(";", StringSplitOptions.TrimEntries);
+                    string[] multiValues = ((string)propValue).Split(";", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
                     foreach (string val in multiValues)
                     {
                         var found = list.Collection.Where(x => (string)x.Value == val || x.DisplayName == val).FirstOrDefault();
@@ -287,6 +287,52 @@ namespace ExcelImporter.Shared.Excel
             return null;
         }
 
+        public static MemberInfo[] GetMembersToExport<T>()
+        {
+            MemberInfo[] membersToInclude = typeof(T)
+                .GetProperties()
+                .Where(p => p.GetCustomAttributes(typeof(ExportTemplateAttribute), true)
+                        .Where(ca => !((ExportTemplateAttribute)ca).Ignore)
+                        .Any())
+                .ToArray();
+
+            return membersToInclude;
+        }
+
+        public static string GetDisplayName<T>(string propName)
+        {
+            object[] attrInfo = typeof(T)
+                            .GetProperty(propName)
+                            .GetCustomAttributes(typeof(ExportTemplateAttribute), false);
+
+            return (attrInfo != null && attrInfo.Length > 0) ? (attrInfo[0] as ExportTemplateAttribute).DisplayName : propName;
+        }
+
+        public static bool IsLocked<T>(string propName)
+        {
+            PropertyInfo propInfo = typeof(T).GetProperty(propName);
+            if (propInfo != null)
+            {
+                object[] attrInfo = propInfo.GetCustomAttributes(typeof(ExportTemplateAttribute), false);
+                if (attrInfo != null && attrInfo.Length > 0)
+                    return (attrInfo[0] as ExportTemplateAttribute).Lock;
+            }
+
+            return false;
+        }
+
+        public static bool AllowFKValues<T>(string propName)
+        {
+            PropertyInfo propInfo = typeof(T).GetProperty(propName);
+            if (propInfo != null)
+            {
+                object[] attrInfo = propInfo.GetCustomAttributes(typeof(ExportTemplateAttribute), false);
+                if (attrInfo != null && attrInfo.Length > 0)
+                    return (attrInfo[0] as ExportTemplateAttribute).AllowNonFKValues;
+            }
+
+            return false;
+        }
 
 
     }

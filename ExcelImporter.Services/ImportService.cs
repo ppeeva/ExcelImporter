@@ -48,13 +48,13 @@ namespace ExcelImporter.Services
         }
 
 
-        private async Task<IList<ExcelDDL>> GetDropDownListsCollection(ExcelDropDownListType[] ddlTypes)
+        private IList<ExcelDDL> GetDropDownListsCollection(ExcelDropDownListType[] ddlTypes)
         {
             List<ExcelDDL> lists = new List<ExcelDDL>();
 
-            foreach (ExcelDropDownListType typ in ddlTypes)
+            foreach (ExcelDropDownListType ddlType in ddlTypes)
             {
-                switch (typ)
+                switch (ddlType)
                 {
                     case ExcelDropDownListType.Language:
                         List<ExcelDDLItem> languages = new List<ExcelDDLItem>{
@@ -94,7 +94,7 @@ namespace ExcelImporter.Services
                 List<PublisherImportModel> publisherImportModels = new List<PublisherImportModel>();
                 List<BookImportModel> bookImportModels = new List<BookImportModel>();
 
-                IList<ExcelDDL> ddlLists = await GetDropDownListsCollection(
+                IList<ExcelDDL> ddlLists = GetDropDownListsCollection(
                     new ExcelDropDownListType[] {
                         ExcelDropDownListType.Language
                     });
@@ -272,5 +272,41 @@ namespace ExcelImporter.Services
         }
 
 
+        public FileDownloadModel ExportFileTemplateToExcel()
+        {
+            IList<ExcelDDL> ddlLists = GetDropDownListsCollection(
+                    new ExcelDropDownListType[] {
+                        ExcelDropDownListType.Language,
+                    });
+
+            PublisherImportModel publisherModel = new PublisherImportModel();
+            BookImportModel bookModel = new BookImportModel();
+
+            string publisherSheetName = _importSettings.PublishersSheetName ?? "";
+            string bookSheetName = _importSettings.BooksSheetName ?? "";
+
+
+            var stream = new MemoryStream();
+            using (var package = new ExcelPackage(stream))
+            {
+                var publisherWorkSheet = package.Workbook.Worksheets.Add(publisherSheetName);
+                ExcelHelper.AddModelDataToSheet(package.Workbook, publisherWorkSheet, new List<PublisherImportModel>() { publisherModel }, ddlLists, false, true);
+
+                var bookWorkSheet = package.Workbook.Worksheets.Add(bookSheetName);
+                ExcelHelper.AddModelDataToSheet(package.Workbook, bookWorkSheet, new List<BookImportModel>() { bookModel }, ddlLists, false, true);
+
+                package.Save();
+            }
+            stream.Position = 0;
+
+            FileDownloadModel file = new FileDownloadModel()
+            {
+                Mimetype = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                Filename = "ImportFileTemplate.xlsx",
+                Data = Convert.ToBase64String(stream.ToArray())
+            };
+
+            return file;
+        }
     }
 }
