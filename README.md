@@ -10,8 +10,13 @@ C# (ASP .Net Core Web API)
 
 Method: POST
 
-URL: https://localhost:7094/api/import/testFile
+URL: https://localhost:44350/api/import/testFile
 
 Body: form-data
 
 Body: Content - File
+
+
+Method: GET
+
+URL: https://localhost:44350/api/import/exportFileTemplate
