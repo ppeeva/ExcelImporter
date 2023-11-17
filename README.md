@@ -1,6 +1,6 @@
 # ExcelImporter
 
-Example piece of functionality for importing Excel files. Tailored for custom data models. Option to export Excel file template.
+Example piece of functionality - WEB API method for importing Excel files. Tailored for custom data models. Uses unsupported version of Epplus. Returns json echoing the file data. Uses reflection. Option to export Excel file template.
 
 # Technologies
 
